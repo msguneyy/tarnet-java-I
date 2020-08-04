@@ -11,12 +11,16 @@ public class turak {
         switch (sonuc) {
             case 1:
                 System.out.printf("personel seçildi");
+                break;
             case 2:
                 System.out.printf("satışlar seçildi");
+                break;
             case 3:
                 System.out.printf("krediler seçildi");
+                break;
             case 0:
                 System.exit(1);
+                break;
         }
 
     }
