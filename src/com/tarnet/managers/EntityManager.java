@@ -1,32 +1,25 @@
 package com.tarnet.managers;
 
-import com.tarnet.MenuItem;
-import com.tarnet.entity.Personel;
+import com.tarnet.interfaces.IEntity;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class EntityManager {
-    // list
-    // findById
-    // findByKeyword
-   public void list(List<Personel> personel){
-       personel
-               .stream()
-               .forEach(System.out::println);
-   }
-   public  void findById(List<Personel> personel, int id){
-       personel
-               .stream()
-               .filter(p -> p.getId() == id)
-               .forEach(System.out::println);
-   }
-    public  void findByKey(List<Personel> personel, String  key){
-        personel
-                .stream()
-                .filter(p -> p.getFirstName().equals(key))
-                .forEach(System.out::println);
+public class EntityManager<T extends IEntity>{ // TEMPLATE CLASS && TEMPLATE FUNCTIONS
+    private List<T> dataList;
+
+    public EntityManager(List<T> dataList) {
+        this.dataList = dataList;
     }
 
+    public List<T> findAll (){
+        return this.dataList;
+    }
+
+    public List<T>  findById(int id){
+        return dataList.parallelStream().filter(e->e.getId()==id).collect(Collectors.toList());
+    }
+    public List<T> findByKeyword(String keyword){
+        return dataList.parallelStream().filter(e->e.toString().contains(keyword)).collect(Collectors.toList());
+    }
 }
