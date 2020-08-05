@@ -1,5 +1,7 @@
 package com.tarnet.entity;
 
+import com.tarnet.MenuItem;
+
 public class Personel {
     private int id;
     private String firstName;
@@ -61,4 +63,38 @@ public class Personel {
     public String toString() {
         return this.firstName +" "+ this.lastName;
     }
+
+    public static class BuilderPersonel {
+        private Personel personel;
+
+        public BuilderPersonel() {
+            this.personel = new Personel();
+        }
+
+        public Personel.BuilderPersonel withId(int id){
+            this.personel.setId(id);
+            return this;
+        }
+        public Personel.BuilderPersonel first(String first) {
+            this.personel.setFirstName(first);
+            return this;
+        }
+        public Personel.BuilderPersonel last(String last) {
+            this.personel.setLastName(last);
+            return this;
+        }
+
+        public Personel.BuilderPersonel title(String title) {
+            this.personel.setTitle(title);
+            return this;
+        }
+
+
+
+        public Personel.BuilderPersonel title(Department department) {
+            this.personel.setDepartment(department);
+            return this;
+        }
+    }
+
 }

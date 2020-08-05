@@ -3,6 +3,7 @@ package com.tarnet;
 import com.tarnet.entity.Department;
 import com.tarnet.entity.Personel;
 import com.tarnet.enums.InventoryItemType;
+import com.tarnet.managers.EntityManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +23,15 @@ public class ConsoleApp {
     public static void main(String[] args) throws IOException {
         consoleReader = new BufferedReader(new InputStreamReader(System.in));
         GenerateAppMenu();
+        GenerateStaticData();
+        EntityManager entityManager=new EntityManager();
+        System.out.println("-------------------------");
+        entityManager.list(personels);
+        System.out.println("-------------------------");
+        entityManager.findById(personels,2);
+        System.out.println("-------------------------");
+        entityManager.findByKey(personels,"Mehmet Emin");
+        System.out.println("-------------------------");
         do {
             Run(-1);
         } while (!isExited);
@@ -58,9 +68,9 @@ public class ConsoleApp {
 
     private static void GenerateStaticData(){
         personels.add(new Personel(1,"Mehmet Gani","Tombalak","Dev",new Department(1,"IT")));
-        personels.add(new Personel(2,"Burcu","Durmusoglu","Senior Dev",new Department(1,"IT")));
-        personels.add(new Personel(3,"Mehmet Emin","Cakir","Senior Dev",new Department(1,"IT")));
-        personels.add(new Personel(4,"Ersin","Kilic","Architect",new Department(1,"IT")));
+        personels.add(new Personel(2,"Burcu","Durmusoglu","Senior Dev",new Department(2,"IT")));
+        personels.add(new Personel(3,"Mehmet Emin","Cakir","Senior Dev",new Department(3,"IT")));
+        personels.add(new Personel(4,"Ersin","Kilic","Architect",new Department(4,"IT")));
         personels.add(new Personel(5,"Faik Aykut","Acer","Dev Manager",new Department(1,"IT")));
 
     }
