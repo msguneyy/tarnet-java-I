@@ -21,4 +21,5 @@ public class EntityManager<T extends IEntity> { // TEMPLATE CLASS && TEMPLATE FU
     }
 
     public Function<String, List<T>> findByKeyword = (String keyword) -> dataList.parallelStream().filter(e -> e.toString().contains(keyword)).collect(Collectors.toList());
+    public Function<Integer, List<T>> findById = (Integer id) -> dataList.parallelStream().filter(e -> e.getId()==id).collect(Collectors.toList());
 }
